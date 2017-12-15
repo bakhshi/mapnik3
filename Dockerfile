@@ -5,8 +5,9 @@ RUN apt-get update -y && \
 ENV CXX="clang++-3.8"
 ENV CC="clang-3.8"
 
-RUN git clone https://github.com/mapnik/mapnik.git --depth 10
+RUN git clone https://github.com/mapnik/mapnik.git
 WORKDIR /mapnik
+RUN git checkout v3.0.17
 RUN git submodule update --init
 RUN ./bootstrap.sh
 RUN ./configure CUSTOM_CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0" CXX=${CXX} CC=${CC}
